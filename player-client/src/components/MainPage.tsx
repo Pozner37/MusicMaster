@@ -38,7 +38,7 @@ const MainPage = () => {
 
   return (
     <Stack width="95%" alignItems={"center"}>
-      <Typography>Guess The Song</Typography>
+      <Typography variant={"h4"}>Guess The Song</Typography>
       <IconButton
         size="large"
         color={listening ? "error" : "primary"}
@@ -50,7 +50,9 @@ const MainPage = () => {
       >
         <MicIcon />
       </IconButton>
-      <p>Microphone: {listening ? "on" : "off"}</p>
+      <Typography variant={"h5"}>
+        Microphone: {listening ? "on" : "off"}
+      </Typography>
       <TextField
         value={answer}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
