@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [gameId, setGameId] = useState<string>("");
   const [username, setUsername] = useState<string>("");
+
+  const navigate = useNavigate();
 
   const enterGame = () => {
     axios
@@ -13,7 +15,7 @@ const Login = () => {
         `http://localhost:4000/join-game?gameId=${gameId}&userName=${username}`,
       )
       .then(() => {
-        redirect(`/main`);
+        navigate("/main", { state: { username } });
       });
   };
 

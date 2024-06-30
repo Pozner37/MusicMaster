@@ -10,9 +10,14 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import MicIcon from "@mui/icons-material/Mic";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const MainPage = () => {
   const [answer, setAnswer] = useState<string>("");
+
+  const { state } = useLocation();
+
+  const username = state?.username;
 
   // sets the speech recognition to only recognize english
   SpeechRecognition.getRecognition().lang = "en-US";
@@ -29,6 +34,8 @@ const MainPage = () => {
   }, [transcript]);
 
   const submitGuess = () => {
+    console.log(username);
+    console.log(answer);
     // TODO: send guess to server
   };
 
