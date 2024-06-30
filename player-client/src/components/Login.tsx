@@ -3,19 +3,24 @@ import { Button, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+interface LoginProps {
+  setUsername: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Login = ({ setUsername }: LoginProps) => {
   const [gameId, setGameId] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
+  const [localUsername, setLocalUsername] = useState<string>("");
 
   const navigate = useNavigate();
 
   const enterGame = () => {
     axios
       .get(
-        `http://localhost:4000/join-game?gameId=${gameId}&userName=${username}`,
+        `http://localhost:4000/join-game?gameId=${gameId}&userName=${localUsername}`,
       )
       .then(() => {
-        navigate("/main", { state: { username } });
+        setUsername(localUsername);
+        navigate("/buzzer");
       });
   };
 
@@ -30,9 +35,9 @@ const Login = () => {
         placeholder={"Enter PIN"}
       />
       <TextField
-        value={username}
+        value={localUsername}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setUsername(event.target.value);
+          setLocalUsername(event.target.value);
         }}
         placeholder={"Enter name"}
       />

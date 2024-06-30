@@ -11,13 +11,14 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import MicIcon from "@mui/icons-material/Mic";
 import { useLocation, useNavigate } from "react-router-dom";
+import { socket } from "../socket";
 
-const MainPage = () => {
+interface MainPageProps {
+  username: string;
+}
+
+const MainPage = ({ username }: MainPageProps) => {
   const [answer, setAnswer] = useState<string>("");
-
-  const { state } = useLocation();
-
-  const username = state?.username;
 
   // sets the speech recognition to only recognize english
   SpeechRecognition.getRecognition().lang = "en-US";
@@ -34,9 +35,7 @@ const MainPage = () => {
   }, [transcript]);
 
   const submitGuess = () => {
-    console.log(username);
-    console.log(answer);
-    // TODO: send guess to server
+    socket.emit("answer", answer);
   };
 
   if (!browserSupportsSpeechRecognition) {
