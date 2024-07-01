@@ -10,18 +10,25 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import MicIcon from "@mui/icons-material/Mic";
-import { useLocation, useNavigate } from "react-router-dom";
 import { socket } from "../socket";
+import { useNavigate } from "react-router-dom";
 
 interface MainPageProps {
   username: string;
+  isTurnOver: boolean;
 }
 
-const MainPage = ({ username }: MainPageProps) => {
+const MainPage = ({ isTurnOver }: MainPageProps) => {
   const [answer, setAnswer] = useState<string>("");
 
   // sets the speech recognition to only recognize english
   SpeechRecognition.getRecognition().lang = "en-US";
+
+  const navigate = useNavigate();
+
+  if (isTurnOver) {
+    navigate("/buzzer");
+  }
 
   const {
     transcript,

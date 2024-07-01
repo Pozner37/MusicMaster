@@ -17,7 +17,7 @@ const Login = ({ setUsername }: LoginProps) => {
   const enterGame = () => {
     axios
       .get(
-        `http://localhost:4000/join-game?gameId=${gameId}&userName=${localUsername}`,
+        `http://localhost:3000/join-game?gameId=${gameId}&userName=${localUsername}`,
       )
       .then((res) => {
         socket.emit("join-game", {

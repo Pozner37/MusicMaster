@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Stack } from "@mui/material";
 import { socket } from "../socket";
 import { useNavigate } from "react-router-dom";
 
 interface BuzzerProps {
   isBuzzerGranted: boolean;
+  setIsTurnOver: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Buzzer = ({ isBuzzerGranted }: BuzzerProps) => {
+const Buzzer = ({ isBuzzerGranted, setIsTurnOver }: BuzzerProps) => {
   const guess = () => {
     socket.emit("buzzer");
   };
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsTurnOver(false);
+  }, []);
 
   if (isBuzzerGranted) {
     navigate("/main");

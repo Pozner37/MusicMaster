@@ -9,16 +9,25 @@ import MainPage from "./components/MainPage";
 function App() {
   const [isGuessAllowed, setIsGuessAllowed] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
+  const [isTurnOver, setIsTurnOver] = useState<boolean>(false);
 
   useEffect(() => {
     function onBuzzer() {
       setIsGuessAllowed(true);
     }
 
+    function onAnswer() {
+      setIsTurnOver(true);
+    }
+
     socket.on("buzzerGranted", onBuzzer);
+    socket.on("correctAnswer", onAnswer);
+    socket.on("wrongAnswer", onAnswer);
 
     return () => {
       socket.off("buzzerGranted", onBuzzer);
+      socket.off("correctAnswer", onAnswer);
+      socket.off("wrongAnswer", onAnswer);
     };
   }, []);
 
@@ -37,7 +46,7 @@ function App() {
             ></Route>
             <Route
               path="/main"
-              element={<MainPage username={username} />}
+              element={<MainPage username={username} isTurnOver={isTurnOver} />}
             ></Route>
           </Routes>
         </div>
