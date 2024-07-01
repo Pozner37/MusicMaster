@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { socket } from "../socket";
 
 interface LoginProps {
   setUsername: React.Dispatch<React.SetStateAction<string>>;
@@ -18,7 +19,11 @@ const Login = ({ setUsername }: LoginProps) => {
       .get(
         `http://localhost:4000/join-game?gameId=${gameId}&userName=${localUsername}`,
       )
-      .then(() => {
+      .then((res) => {
+        socket.emit("join-game", {
+          playerId: res.data.userId,
+          userName: localUsername,
+        });
         setUsername(localUsername);
         navigate("/buzzer");
       });
