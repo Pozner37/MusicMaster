@@ -19,9 +19,11 @@ const Buzzer = ({ isBuzzerGranted, setIsTurnOver }: BuzzerProps) => {
     setIsTurnOver(false);
   }, []);
 
+  useEffect(() => {
   if (isBuzzerGranted) {
     navigate("/main");
   }
+},[isBuzzerGranted])
 
   return (
     <Stack width="95%" alignItems={"center"}>

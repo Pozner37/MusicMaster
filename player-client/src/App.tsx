@@ -18,6 +18,7 @@ function App() {
 
     function onAnswer() {
       setIsTurnOver(true);
+      setIsGuessAllowed(false)
     }
 
     socket.on("buzzerGranted", onBuzzer);
@@ -42,7 +43,7 @@ function App() {
             ></Route>
             <Route
               path="/buzzer"
-              element={<Buzzer isBuzzerGranted={isGuessAllowed} />}
+              element={<Buzzer isBuzzerGranted={isGuessAllowed} setIsTurnOver={setIsTurnOver} />}
             ></Route>
             <Route
               path="/main"
