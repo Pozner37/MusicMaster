@@ -1,0 +1,76 @@
+{
+  "hash": "76add467",
+  "configHash": "b9c38226",
+  "lockfileHash": "5f7eb027",
+  "browserHash": "3c869914",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "d910a3ba",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "bdcfce2f",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "cb03f83f",
+      "needsInterop": false
+    },
+    "@mui/material": {
+      "src": "../../node_modules/@mui/material/index.js",
+      "file": "@mui_material.js",
+      "fileHash": "b37a4544",
+      "needsInterop": false
+    },
+    "react-speech-recognition": {
+      "src": "../../node_modules/react-speech-recognition/lib/index.js",
+      "file": "react-speech-recognition.js",
+      "fileHash": "411eb92b",
+      "needsInterop": true
+    },
+    "@mui/icons-material/Mic": {
+      "src": "../../node_modules/@mui/icons-material/Mic.js",
+      "file": "@mui_icons-material_Mic.js",
+      "fileHash": "743b2466",
+      "needsInterop": true
+    },
+    "socket.io-client": {
+      "src": "../../node_modules/socket.io-client/build/esm/index.js",
+      "file": "socket__io-client.js",
+      "fileHash": "92a719b5",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "b545f1fd",
+      "needsInterop": false
+    },
+    "regenerator-runtime/runtime.js": {
+      "src": "../../node_modules/regenerator-runtime/runtime.js",
+      "file": "regenerator-runtime_runtime__js.js",
+      "fileHash": "e0bdb055",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-LUE6KJDZ": {
+      "file": "chunk-LUE6KJDZ.js"
+    },
+    "chunk-ZIYUGMGG": {
+      "file": "chunk-ZIYUGMGG.js"
+    },
+    "chunk-65KY755N": {
+      "file": "chunk-65KY755N.js"
+    },
+    "chunk-V4OQ3NZ2": {
+      "file": "chunk-V4OQ3NZ2.js"
+    }
+  }
+}
