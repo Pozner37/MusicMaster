@@ -10,7 +10,11 @@ interface BuzzerProps {
 
 const Buzzer = ({ isBuzzerGranted, setIsTurnOver }: BuzzerProps) => {
   const guess = () => {
-    socket.emit("buzzer");
+    socket.emitWithAck("buzzer").then((buzzerApproved) => {
+      if (buzzerApproved) {
+        navigate("/main");
+      }
+    });
   };
 
   const navigate = useNavigate();
@@ -19,15 +23,11 @@ const Buzzer = ({ isBuzzerGranted, setIsTurnOver }: BuzzerProps) => {
     setIsTurnOver(false);
   }, []);
 
-  useEffect(() => {
-    if (isBuzzerGranted) {
-      navigate("/main");
-    }
-  }, [isBuzzerGranted]);
-
   return (
     <Stack width="95%" alignItems={"center"}>
-      <Button onClick={guess}>GUESS</Button>
+      <Button disabled={isBuzzerGranted} onClick={guess}>
+        GUESS
+      </Button>
     </Stack>
   );
 };
