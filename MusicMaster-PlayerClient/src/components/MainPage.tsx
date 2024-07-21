@@ -43,7 +43,7 @@ const MainPage = ({ isTurnOver }: MainPageProps) => {
   }, [transcript]);
 
   const submitGuess = () => {
-    socket.emit("answer", answer);
+    socket.emit("answer", { answer: answer });
   };
 
   if (!browserSupportsSpeechRecognition) {

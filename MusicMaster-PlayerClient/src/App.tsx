@@ -23,12 +23,12 @@ function App() {
 
     socket.on("buzzer-granted", onBuzzer);
     socket.on("buzzer-revoked", onAnswer);
-    // socket.on("wrongAnswer", onAnswer);
+    socket.on("round-ended", onAnswer);
 
     return () => {
       socket.off("buzzer-granted", onBuzzer);
       socket.off("buzzer-revoked", onAnswer);
-      // socket.off("wrongAnswer", onAnswer);
+      socket.off("round-ended", onAnswer);
     };
   }, []);
 
