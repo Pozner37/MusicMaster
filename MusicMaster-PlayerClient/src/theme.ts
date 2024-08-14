@@ -1,41 +1,40 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
   palette: {
-    mode: 'dark',
     primary: {
-      main: '#bb86fc',
-      contrastText: '#ffffff',
+      main: "#bb86fc",
+      contrastText: "#ffffff",
     },
     background: {
-      default: '#121212',
-      paper: '#FFEDFB',
+      default: "#121212",
+      paper: "#FFEDFB",
     },
     text: {
-      primary: '#000000',
+      primary: "#000000",
     },
     info: {
-      main: '#ffffff',
+      main: "#ffffff",
     },
     success: {
-      main: '#f50057',
+      main: "#f50057",
     },
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          fontSize: '1.5rem',
-          width: '15rem',
+          fontSize: "1.5rem",
+          width: "15rem",
         },
       },
       defaultProps: {
-        variant: 'contained',
+        variant: "contained",
       },
     },
   },
   typography: {
-    fontFamily: 'MusicMasterFont',
+    fontFamily: "MusicMasterFont",
     fontSize: 16,
   },
 });
