@@ -2,6 +2,7 @@ import "regenerator-runtime/runtime.js";
 import React, { useEffect, useState } from "react";
 import {
   Button,
+  Card,
   IconButton,
   Stack,
   TextField,
@@ -19,7 +20,7 @@ interface MainPageProps {
   isTurnOver: boolean;
 }
 
-const MainPage = ({ isTurnOver }: MainPageProps) => {
+const GuessPage = ({ isTurnOver }: MainPageProps) => {
   const [answer, setAnswer] = useState<string>("");
 
   // sets the speech recognition to only recognize english
@@ -52,7 +53,11 @@ const MainPage = ({ isTurnOver }: MainPageProps) => {
 
   return (
     <Stack width="95%" alignItems={"center"}>
-      <Typography variant={"h4"}>Guess The Song</Typography>
+      <img
+        src="./music-master-logo-small.svg"
+        alt={"logo"}
+        style={{ width: "10px" }}
+      />
       <IconButton
         size="large"
         color={listening ? "error" : "primary"}
@@ -64,18 +69,20 @@ const MainPage = ({ isTurnOver }: MainPageProps) => {
       >
         <MicIcon />
       </IconButton>
-      <Typography variant={"h5"}>
-        Microphone: {listening ? "on" : "off"}
-      </Typography>
-      <TextField
-        value={answer}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setAnswer(event.target.value);
-        }}
-      />
-      <Button onClick={submitGuess}>Submit</Button>
+      <Card color={"white"}>
+        <Typography variant={"h5"}>
+          Microphone: {listening ? "on" : "off"}
+        </Typography>
+        <TextField
+          value={answer}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setAnswer(event.target.value);
+          }}
+        />
+        <Button onClick={submitGuess}>Submit</Button>
+      </Card>
     </Stack>
   );
 };
 
-export default MainPage;
+export default GuessPage;

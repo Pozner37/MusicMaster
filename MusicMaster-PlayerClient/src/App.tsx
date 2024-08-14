@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { socket } from "./socket";
 import Login from "./components/Login";
 import Buzzer from "./components/Buzzer";
-import MainPage from "./components/MainPage";
+import GuessPage from "./components/GuessPage.tsx";
 
 function App() {
   const [isGuessAllowed, setIsGuessAllowed] = useState<boolean>(false);
@@ -52,7 +52,9 @@ function App() {
             ></Route>
             <Route
               path="/main"
-              element={<MainPage username={username} isTurnOver={isTurnOver} />}
+              element={
+                <GuessPage username={username} isTurnOver={isTurnOver} />
+              }
             ></Route>
           </Routes>
         </div>
