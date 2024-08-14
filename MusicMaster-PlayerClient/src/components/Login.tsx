@@ -32,10 +32,8 @@ const Login = ({ setUsername }: LoginProps) => {
       </Box>
       <Box
         sx={{
-          width: "100%",
-          position: "absolute",
-          bottom: "15%",
-          backgroundColor: "white",
+          position: "fixed",
+          bottom: "5em",
         }}
       >
         <Stack alignItems={"center"} spacing={2} padding={3}>
@@ -46,6 +44,7 @@ const Login = ({ setUsername }: LoginProps) => {
             }}
             placeholder={"Enter PIN"}
             variant="standard"
+            inputProps={{ inputMode: "numeric" }}
           />
           <TextField
             value={localUsername}
