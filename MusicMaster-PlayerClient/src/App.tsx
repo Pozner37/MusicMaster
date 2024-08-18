@@ -38,11 +38,11 @@ function App() {
         <div>
           <Routes>
             <Route
-              path="/"
+              path="/s"
               element={<Login setUsername={setUsername} />}
             ></Route>
             <Route
-              path="/buzzer"
+              path="/"
               element={
                 <Buzzer
                   isBuzzerGranted={isGuessAllowed}

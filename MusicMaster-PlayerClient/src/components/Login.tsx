@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Stack, TextField } from "@mui/material";
+import { Button, Stack, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { socket } from "../socket";
 
@@ -21,21 +21,21 @@ const Login = ({ setUsername }: LoginProps) => {
       })
       .then(() => {
         setUsername(localUsername);
+        document.body.style.backgroundImage = `url('/background.jpg')`;
         navigate("/buzzer");
       });
   };
 
   return (
-    <Stack width="95%" alignItems={"center"}>
-      <Box sx={{ position: "relative", top: "3em" }}>
-        <img src="/music-master-logo-small.svg" alt={"logo"} />
-      </Box>
-      <Box
-        sx={{
-          position: "fixed",
-          bottom: "5em",
-        }}
+    <div className={"login-background"}>
+      <Stack
+        sx={{ position: "relative", top: "8em" }}
+        width={"95%"}
+        alignItems={"center"}
+        spacing={18}
       >
+        <img src="/music-master-logo-small.svg" alt={"logo"} />
+
         <Stack alignItems={"center"} spacing={2} padding={3}>
           <TextField
             value={gameId}
@@ -44,7 +44,7 @@ const Login = ({ setUsername }: LoginProps) => {
             }}
             placeholder={"Enter PIN"}
             variant="standard"
-            inputProps={{ inputMode: "numeric" }}
+            inputProps={{ inputMode: "numeric", maxLength: 6 }}
           />
           <TextField
             value={localUsername}
@@ -57,8 +57,8 @@ const Login = ({ setUsername }: LoginProps) => {
           />
           <Button onClick={joinGame}>Submit</Button>
         </Stack>
-      </Box>
-    </Stack>
+      </Stack>
+    </div>
   );
 };
 
