@@ -32,9 +32,13 @@ const MicButton = ({
   iconSize,
   isRecording = false,
 }: MicButtonProps) => (
-  <Button onClick={onClick} sx={circleButton(top, size)}>
+  <Button
+    onClick={onClick}
+    sx={circleButton(top, size)}
+    color={isRecording ? "info" : "secondary"}
+  >
     {isRecording ? (
-      <StopIcon sx={{ fontSize: iconSize || 120 }} color={"secondary"} />
+      <StopIcon sx={{ fontSize: iconSize || 120 }} />
     ) : (
       <MicIcon sx={{ fontSize: iconSize || 120 }} />
     )}
