@@ -10,9 +10,10 @@ const circleButton: SxProps = (top = "10em", size = "250px") => ({
   position: "relative",
   alignSelf: "center",
   top: top,
-  outline: "none",
-  "&.Mui-focusVisible": {
-    border: "none",
+  "&:focus": {
+    outline: "none",
+  },
+  "&:active": {
     outline: "none",
   },
 });
@@ -22,7 +23,7 @@ interface MicButtonProps {
   size?: string;
   top?: string;
   iconSize?: number;
-  isRecording: boolean;
+  isRecording?: boolean;
 }
 
 const MicButton = ({
