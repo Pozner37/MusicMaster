@@ -1,19 +1,12 @@
 import "regenerator-runtime/runtime.js";
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Card,
-  IconButton,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Card, Stack, TextField } from "@mui/material";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import MicIcon from "@mui/icons-material/Mic";
 import { socket } from "../socket";
 import { useNavigate } from "react-router-dom";
+import MicButton from "./MicButton.tsx";
 
 interface MainPageProps {
   username: string;
@@ -32,12 +25,12 @@ const GuessPage = ({ isTurnOver }: MainPageProps) => {
     navigate("/buzzer");
   }
 
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
+  const { transcript, listening, browserSupportsSpeechRecognition } =
+    useSpeechRecognition();
+
+  useEffect(() => {
+    SpeechRecognition.startListening();
+  }, []);
 
   useEffect(() => {
     setAnswer(transcript);
@@ -53,33 +46,28 @@ const GuessPage = ({ isTurnOver }: MainPageProps) => {
 
   return (
     <Stack width="95%" alignItems={"center"}>
-      <img
-        src="./music-master-logo-small.svg"
-        alt={"logo"}
-        style={{ width: "10px" }}
-      />
-      <IconButton
-        size="large"
-        color={listening ? "error" : "primary"}
+      <MicButton
+        top={"20em"}
+        size={"160px"}
+        iconSize={60}
         onClick={() =>
           !listening
             ? SpeechRecognition.startListening()
             : SpeechRecognition.stopListening()
         }
-      >
-        <MicIcon />
-      </IconButton>
-      <Card color={"white"}>
-        <Typography variant={"h5"}>
-          Microphone: {listening ? "on" : "off"}
-        </Typography>
-        <TextField
-          value={answer}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setAnswer(event.target.value);
-          }}
-        />
-        <Button onClick={submitGuess}>Submit</Button>
+        isRecording={listening}
+      />
+      <Card color={"white"} sx={{ width: "20em" }}>
+        <Stack alignItems={"center"} spacing={4} padding={4}>
+          <TextField
+            placeholder={"Your answer"}
+            value={answer}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setAnswer(event.target.value);
+            }}
+          />
+          <Button onClick={submitGuess}>Submit</Button>
+        </Stack>
       </Card>
     </Stack>
   );

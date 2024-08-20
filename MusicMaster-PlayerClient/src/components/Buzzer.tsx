@@ -1,20 +1,8 @@
 import React, { useEffect } from "react";
-import { Button, SxProps } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { socket } from "../socket";
 import { useNavigate } from "react-router-dom";
-
-const circleButton: SxProps = {
-  borderRadius: "50%",
-  height: "250px",
-  width: "250px",
-  position: "relative",
-  top: "10em",
-  outline: "none",
-  "&.Mui-focusVisible": {
-    border: "none",
-    outline: "none",
-  },
-};
+import MicButton from "./MicButton.tsx";
 
 interface BuzzerProps {
   isBuzzerGranted: boolean;
@@ -36,12 +24,16 @@ const Buzzer = ({ isBuzzerGranted, setIsTurnOver }: BuzzerProps) => {
     setIsTurnOver(false);
   }, []);
 
-  return (
-    // <Stack width="95%" alignItems={"center"}>
-    <Button disabled={isBuzzerGranted} onClick={guess} sx={circleButton}>
-      GUESS
-    </Button>
-    // </Stack>
+  return isBuzzerGranted ? (
+    <Stack paddingTop={"4em"} spacing={26} width={"24em"}>
+      <Typography variant={"h3"}>Too slow...</Typography>
+      <Typography variant={"h5"}>Someone else is currently guessing</Typography>
+    </Stack>
+  ) : (
+    <Stack paddingTop={"4em"}>
+      <Typography variant={"h3"}>GUESS THE SONG</Typography>
+      <MicButton onClick={guess} />
+    </Stack>
   );
 };
 

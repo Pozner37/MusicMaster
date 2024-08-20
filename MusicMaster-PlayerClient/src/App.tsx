@@ -5,11 +5,13 @@ import { socket } from "./socket";
 import Login from "./components/Login";
 import Buzzer from "./components/Buzzer";
 import GuessPage from "./components/GuessPage.tsx";
+import WaitingScreen from "./components/WaitingScreen.tsx";
 
 function App() {
   const [isGuessAllowed, setIsGuessAllowed] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
   const [isTurnOver, setIsTurnOver] = useState<boolean>(false);
+  const [gameStarted, setGameStarted] = useState<boolean>(false);
 
   useEffect(() => {
     function onBuzzer() {
@@ -41,8 +43,9 @@ function App() {
               path="/s"
               element={<Login setUsername={setUsername} />}
             ></Route>
+            `
             <Route
-              path="/"
+              path="/buzzer"
               element={
                 <Buzzer
                   isBuzzerGranted={isGuessAllowed}
@@ -51,7 +54,11 @@ function App() {
               }
             ></Route>
             <Route
-              path="/main"
+              path="/sw"
+              element={<WaitingScreen gameStarted={gameStarted} />}
+            ></Route>
+            <Route
+              path="/"
               element={
                 <GuessPage username={username} isTurnOver={isTurnOver} />
               }
