@@ -28,14 +28,13 @@ interface MicButtonProps {
 
 const MicButton = ({
   onClick,
-  size,
   top,
   iconSize,
   isRecording = false,
 }: MicButtonProps) => (
   <Button
     onClick={onClick}
-    sx={circleButton(top, size)}
+    sx={circleButton(top)}
     color={isRecording ? "info" : "secondary"}
   >
     {isRecording ? (
