@@ -11,7 +11,7 @@ function App() {
   const [isGuessAllowed, setIsGuessAllowed] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
   const [isTurnOver, setIsTurnOver] = useState<boolean>(false);
-  const [gameStarted, setGameStarted] = useState<boolean>(false);
+  const [gameStarted] = useState<boolean>(false);
 
   useEffect(() => {
     function onBuzzer() {
