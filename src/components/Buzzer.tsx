@@ -31,19 +31,19 @@ const Buzzer = ({
 
   if (!roundStarted) {
     return (
-      <Stack paddingTop={"30%"} spacing={26} width={"24em"}>
+      <Stack paddingTop={"40%"} spacing={26} width={"24em"}>
         <Typography variant={"h4"}>Waiting for next round</Typography>
       </Stack>
     );
   }
 
   return isBuzzerGranted ? (
-    <Stack paddingTop={"30%"} spacing={26} width={"24em"}>
+    <Stack paddingTop={"40%"} spacing={26} width={"24em"}>
       <Typography variant={"h3"}>Too slow...</Typography>
       <Typography variant={"h5"}>Someone else is currently guessing</Typography>
     </Stack>
   ) : (
-    <Stack paddingTop={"30%"}>
+    <Stack paddingTop={"40%"}>
       <Typography variant={"h3"}>GUESS THE SONG</Typography>
       <MicButton onClick={guess} />
     </Stack>

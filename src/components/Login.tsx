@@ -23,7 +23,6 @@ const Login = () => {
   return (
     <Stack
       sx={{ position: "relative", top: "8em" }}
-      width={"95%"}
       alignItems={"center"}
       spacing={18}
     >

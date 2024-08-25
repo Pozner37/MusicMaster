@@ -14,7 +14,7 @@ const WaitingScreen = ({ gameStarted }: WaitingScreenProps) => {
   }, [gameStarted]);
 
   return (
-    <Stack paddingTop={"30%"} spacing={26}>
+    <Stack paddingTop={"40%"} spacing={26}>
       <Typography variant={"h3"}>You're in!</Typography>
       <Typography variant={"h5"}>Waiting for the game to start...</Typography>
     </Stack>
