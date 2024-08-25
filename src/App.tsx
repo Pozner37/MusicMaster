@@ -10,6 +10,7 @@ import WaitingScreen from "./components/WaitingScreen.tsx";
 function App() {
   const [isGuessAllowed, setIsGuessAllowed] = useState<boolean>(false);
   const [roundStarted, setRoundStarted] = useState<boolean>(false);
+  const [isGameInProgress, setIsGameInProgress] = useState<boolean>(false);
 
   useEffect(() => {
     function onBuzzer() {
@@ -22,6 +23,7 @@ function App() {
 
     function onRoundStarted() {
       setRoundStarted(true);
+      !isGameInProgress && setIsGameInProgress(true);
     }
 
     function onRoundEnd() {
@@ -30,7 +32,7 @@ function App() {
     }
 
     function onGameEnd() {
-      console.log("game ended");
+      setIsGameInProgress(false);
     }
 
     socket.on("buzzer-granted", onBuzzer);
@@ -64,10 +66,19 @@ function App() {
                 <Buzzer
                   isBuzzerGranted={isGuessAllowed}
                   roundStarted={roundStarted}
+                  isGameInProgress={isGameInProgress}
                 />
               }
             ></Route>
-            <Route path="/guess" element={<GuessPage />}></Route>
+            <Route
+              path="/guess"
+              element={
+                <GuessPage
+                  isGuessAllowed={isGuessAllowed}
+                  isGameInProgress={isGameInProgress}
+                />
+              }
+            ></Route>
           </Routes>
         </div>
       </BrowserRouter>

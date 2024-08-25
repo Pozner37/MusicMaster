@@ -8,13 +8,26 @@ import { socket } from "../socket";
 import { useNavigate } from "react-router-dom";
 import MicButton from "./MicButton.tsx";
 
-const GuessPage = () => {
+interface GuessPageProps {
+  isGuessAllowed: boolean;
+  isGameInProgress: boolean;
+}
+
+const GuessPage = ({ isGuessAllowed, isGameInProgress }: GuessPageProps) => {
   const [answer, setAnswer] = useState<string>("");
+
+  useEffect(() => {
+    isGuessAllowed && navigate("/buzzer");
+  }, [isGuessAllowed]);
 
   // sets the speech recognition to only recognize english
   SpeechRecognition.getRecognition().lang = "en-US";
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    !isGameInProgress && navigate("/");
+  }, [isGameInProgress]);
 
   const { transcript, listening, browserSupportsSpeechRecognition } =
     useSpeechRecognition();
@@ -28,7 +41,7 @@ const GuessPage = () => {
   }, [transcript]);
 
   const submitGuess = () => {
-    socket.emit("answer", { answer: answer });
+    socket.emit("answer", { answer: answer || " " });
     navigate("/buzzer");
   };
 

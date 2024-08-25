@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Stack, Typography } from "@mui/material";
 import { socket } from "../socket";
 import { useNavigate } from "react-router-dom";
@@ -7,9 +7,14 @@ import MicButton from "./MicButton.tsx";
 interface BuzzerProps {
   isBuzzerGranted: boolean;
   roundStarted: boolean;
+  isGameInProgress: boolean;
 }
 
-const Buzzer = ({ isBuzzerGranted, roundStarted }: BuzzerProps) => {
+const Buzzer = ({
+  isBuzzerGranted,
+  roundStarted,
+  isGameInProgress,
+}: BuzzerProps) => {
   const guess = () => {
     socket.emitWithAck("buzzer").then((buzzerApproved) => {
       if (buzzerApproved) {
@@ -19,6 +24,10 @@ const Buzzer = ({ isBuzzerGranted, roundStarted }: BuzzerProps) => {
   };
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    !isGameInProgress && navigate("/");
+  }, [isGameInProgress]);
 
   if (!roundStarted) {
     return (
