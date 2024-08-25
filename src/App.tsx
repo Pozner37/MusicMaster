@@ -9,8 +9,6 @@ import WaitingScreen from "./components/WaitingScreen.tsx";
 
 function App() {
   const [isGuessAllowed, setIsGuessAllowed] = useState<boolean>(false);
-  const [username, setUsername] = useState<string>("");
-  const [isTurnOver, setIsTurnOver] = useState<boolean>(false);
   const [roundStarted, setRoundStarted] = useState<boolean>(false);
 
   useEffect(() => {
@@ -19,7 +17,6 @@ function App() {
     }
 
     function onAnswer() {
-      setIsTurnOver(true);
       setIsGuessAllowed(false);
     }
 
@@ -56,10 +53,7 @@ function App() {
       <BrowserRouter>
         <div>
           <Routes>
-            <Route
-              path="/"
-              element={<Login setUsername={setUsername} />}
-            ></Route>
+            <Route path="/" element={<Login />}></Route>
             <Route
               path="/lobby"
               element={<WaitingScreen gameStarted={roundStarted} />}
@@ -69,17 +63,11 @@ function App() {
               element={
                 <Buzzer
                   isBuzzerGranted={isGuessAllowed}
-                  setIsTurnOver={setIsTurnOver}
                   roundStarted={roundStarted}
                 />
               }
             ></Route>
-            <Route
-              path="/guess"
-              element={
-                <GuessPage username={username} isTurnOver={isTurnOver} />
-              }
-            ></Route>
+            <Route path="/guess" element={<GuessPage />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

@@ -3,11 +3,7 @@ import { Button, Card, Stack, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { socket } from "../socket";
 
-interface LoginProps {
-  setUsername: React.Dispatch<React.SetStateAction<string>>;
-}
-
-const Login = ({ setUsername }: LoginProps) => {
+const Login = () => {
   const [gameId, setGameId] = useState<string>("");
   const [localUsername, setLocalUsername] = useState<string>("");
 
@@ -20,7 +16,6 @@ const Login = ({ setUsername }: LoginProps) => {
         playerName: localUsername,
       })
       .then(() => {
-        setUsername(localUsername);
         navigate("/lobby");
       });
   };
