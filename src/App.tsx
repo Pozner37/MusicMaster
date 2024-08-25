@@ -21,23 +21,33 @@ function App() {
     function onAnswer() {
       setIsTurnOver(true);
       setIsGuessAllowed(false);
-      setIsGuessAllowed(false);
     }
 
     function onRoundStarted() {
       setRoundStarted(true);
     }
 
+    function onRoundEnd() {
+      onAnswer();
+      setRoundStarted(false);
+    }
+
+    function onGameEnd() {
+      console.log("game ended");
+    }
+
     socket.on("buzzer-granted", onBuzzer);
     socket.on("buzzer-revoked", onAnswer);
     socket.on("round-started", onRoundStarted);
-    socket.on("round-ended", onAnswer);
+    socket.on("round-ended", onRoundEnd);
+    socket.on("game-ended", onGameEnd);
 
     return () => {
       socket.off("buzzer-granted", onBuzzer);
       socket.off("buzzer-revoked", onAnswer);
       socket.off("round-started", onRoundStarted);
-      socket.off("round-ended", onAnswer);
+      socket.off("round-ended", onRoundEnd);
+      socket.off("game-ended", onGameEnd);
     };
   }, []);
 

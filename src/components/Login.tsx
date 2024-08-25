@@ -57,7 +57,6 @@ const Login = ({ setUsername }: LoginProps) => {
             }}
             placeholder={"Enter name"}
             variant="standard"
-            color={"success"}
           />
           <Button onClick={joinGame}>Submit</Button>
         </Stack>

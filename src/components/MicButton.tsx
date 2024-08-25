@@ -3,7 +3,7 @@ import { Button, SxProps } from "@mui/material";
 import MicIcon from "@mui/icons-material/Mic";
 import StopIcon from "@mui/icons-material/Stop";
 
-const circleButton: SxProps = (top = "10em", size = "250px") => ({
+const circleButton: SxProps = (top = "10rem", size = "250px") => ({
   borderRadius: "50%",
   height: size,
   width: size,
@@ -35,7 +35,7 @@ const MicButton = ({
   <Button
     onClick={onClick}
     sx={circleButton(top)}
-    color={isRecording ? "info" : "secondary"}
+    color={isRecording ? "info" : "primary"}
   >
     {isRecording ? (
       <StopIcon sx={{ fontSize: iconSize || 120 }} />
