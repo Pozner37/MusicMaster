@@ -7,13 +7,18 @@ import MicButton from "./MicButton.tsx";
 interface BuzzerProps {
   isBuzzerGranted: boolean;
   setIsTurnOver: React.Dispatch<React.SetStateAction<boolean>>;
+  roundStarted: boolean;
 }
 
-const Buzzer = ({ isBuzzerGranted, setIsTurnOver }: BuzzerProps) => {
+const Buzzer = ({
+  isBuzzerGranted,
+  setIsTurnOver,
+  roundStarted,
+}: BuzzerProps) => {
   const guess = () => {
     socket.emitWithAck("buzzer").then((buzzerApproved) => {
       if (buzzerApproved) {
-        navigate("/main");
+        navigate("/guess");
       }
     });
   };
@@ -23,6 +28,14 @@ const Buzzer = ({ isBuzzerGranted, setIsTurnOver }: BuzzerProps) => {
   useEffect(() => {
     setIsTurnOver(false);
   }, []);
+
+  if (!roundStarted) {
+    return (
+      <Stack paddingTop={"4em"} spacing={26} width={"24em"}>
+        <Typography variant={"h4"}>Waiting for next round</Typography>
+      </Stack>
+    );
+  }
 
   return isBuzzerGranted ? (
     <Stack paddingTop={"4em"} spacing={26} width={"24em"}>

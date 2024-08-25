@@ -5,6 +5,6 @@ import { io } from "socket.io-client";
 const URL =
   process.env.NODE_ENV === "production"
     ? undefined
-    : "ws://localhost:3000/game-client";
+    : "https://music-master-server.onrender.com/game-client";
 
 export const socket = io(URL);
