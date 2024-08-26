@@ -6,6 +6,8 @@ import Login from "./components/Login";
 import Buzzer from "./components/Buzzer";
 import GuessPage from "./components/GuessPage.tsx";
 import WaitingScreen from "./components/WaitingScreen.tsx";
+import { Bounce, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [isSomeoneElseGuessing, setIsSomeoneElseGuessing] =
@@ -37,7 +39,23 @@ function App() {
       setRoundStarted(false);
     }
 
+    function emitToast(e: any) {
+      console.log(e);
+      const toastId = e.message;
+      toast.error(toastId, {
+        toastId,
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    }
+
     socket.on("buzzer-granted", onBuzzer);
+    socket.on("exception", emitToast);
     socket.on("buzzer-revoked", onAnswer);
     socket.on("round-started", onRoundStarted);
     socket.on("round-ended", onRoundEnd);
@@ -49,6 +67,7 @@ function App() {
       socket.off("round-started", onRoundStarted);
       socket.off("round-ended", onRoundEnd);
       socket.off("game-ended", onGameEnd);
+      socket.off("exception", emitToast);
     };
   }, []);
 
