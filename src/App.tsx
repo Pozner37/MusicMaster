@@ -8,17 +8,18 @@ import GuessPage from "./components/GuessPage.tsx";
 import WaitingScreen from "./components/WaitingScreen.tsx";
 
 function App() {
-  const [isGuessAllowed, setIsGuessAllowed] = useState<boolean>(false);
+  const [isSomeoneElseGuessing, setIsSomeoneElseGuessing] =
+    useState<boolean>(false);
   const [roundStarted, setRoundStarted] = useState<boolean>(false);
   const [isGameInProgress, setIsGameInProgress] = useState<boolean>(false);
 
   useEffect(() => {
     function onBuzzer() {
-      setIsGuessAllowed(true);
+      setIsSomeoneElseGuessing(true);
     }
 
     function onAnswer() {
-      setIsGuessAllowed(false);
+      setIsSomeoneElseGuessing(false);
     }
 
     function onRoundStarted() {
@@ -64,7 +65,7 @@ function App() {
               path="/buzzer"
               element={
                 <Buzzer
-                  isBuzzerGranted={isGuessAllowed}
+                  isSomeoneElseGuessing={isSomeoneElseGuessing}
                   roundStarted={roundStarted}
                   isGameInProgress={isGameInProgress}
                 />
@@ -72,12 +73,7 @@ function App() {
             ></Route>
             <Route
               path="/guess"
-              element={
-                <GuessPage
-                  isGuessAllowed={isGuessAllowed}
-                  isGameInProgress={isGameInProgress}
-                />
-              }
+              element={<GuessPage isGameInProgress={isGameInProgress} />}
             ></Route>
           </Routes>
         </div>

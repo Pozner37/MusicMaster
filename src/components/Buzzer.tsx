@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 import MicButton from "./MicButton.tsx";
 
 interface BuzzerProps {
-  isBuzzerGranted: boolean;
+  isSomeoneElseGuessing: boolean;
   roundStarted: boolean;
   isGameInProgress: boolean;
 }
 
 const Buzzer = ({
-  isBuzzerGranted,
+  isSomeoneElseGuessing,
   roundStarted,
   isGameInProgress,
 }: BuzzerProps) => {
@@ -37,7 +37,7 @@ const Buzzer = ({
     );
   }
 
-  return isBuzzerGranted ? (
+  return isSomeoneElseGuessing ? (
     <Stack paddingTop={"40%"} spacing={26} width={"24em"}>
       <Typography variant={"h3"}>Too slow...</Typography>
       <Typography variant={"h5"}>Someone else is currently guessing</Typography>
