@@ -54,9 +54,27 @@ const GuessPage = ({ isGameInProgress }: GuessPageProps) => {
   }
 
   return (
-    <Stack width="95%" alignItems={"center"}>
+    <Stack
+      alignItems={"center"}
+      spacing={4}
+      sx={{ position: "relative", top: "6rem" }}
+    >
+      <Card color={"white"} sx={{ width: "20em" }}>
+        <Stack alignItems={"center"} spacing={4} padding={4}>
+          <TextField
+            placeholder={"Your answer"}
+            value={answer}
+            multiline
+            maxRows={3}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setAnswer(event.target.value);
+            }}
+          />
+          <Button onClick={submitGuess}>Submit</Button>
+        </Stack>
+      </Card>
       <MicButton
-        top={"20em"}
+        top={""}
         size={"160px"}
         iconSize={60}
         onClick={() =>
@@ -66,18 +84,6 @@ const GuessPage = ({ isGameInProgress }: GuessPageProps) => {
         }
         isRecording={listening}
       />
-      <Card color={"white"} sx={{ width: "20em" }}>
-        <Stack alignItems={"center"} spacing={4} padding={4}>
-          <TextField
-            placeholder={"Your answer"}
-            value={answer}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setAnswer(event.target.value);
-            }}
-          />
-          <Button onClick={submitGuess}>Submit</Button>
-        </Stack>
-      </Card>
     </Stack>
   );
 };
