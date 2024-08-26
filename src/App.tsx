@@ -34,6 +34,7 @@ function App() {
 
     function onGameEnd() {
       setIsGameInProgress(false);
+      setRoundStarted(false);
     }
 
     socket.on("buzzer-granted", onBuzzer);
