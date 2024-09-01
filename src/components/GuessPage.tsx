@@ -69,6 +69,7 @@ const GuessPage = ({ isGameInProgress }: GuessPageProps) => {
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setAnswer(event.target.value);
             }}
+            onClick={() => SpeechRecognition.stopListening()}
           />
           <Button onClick={submitGuess}>Submit</Button>
         </Stack>
