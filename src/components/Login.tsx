@@ -37,8 +37,9 @@ const Login = () => {
       </div>
       <Card>
         <Stack alignItems={"center"} spacing={2} padding={3}>
-          {!queryParamGameId && (
+          {
             <TextField
+              disabled={!!queryParamGameId}
               value={gameId}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setGameId(event.target.value);
@@ -47,7 +48,7 @@ const Login = () => {
               variant="standard"
               inputProps={{ inputMode: "numeric", maxLength: 6 }}
             />
-          )}
+          }
           <TextField
             value={localUsername}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
